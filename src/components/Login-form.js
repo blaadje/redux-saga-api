@@ -19,13 +19,18 @@ export default class Login extends Component {
             password: 
             {this.props.password}
           </li>
+          <li>
+            token: 
+            {this.props.token}
+          </li>
         </ul>
       </div>
     );
   }
   clickMe = function (e) {
     e.preventDefault()
-    this.props.submit(this.inputName.value, this.inputPassword.value)
+    let token = Math.random().toString(36).substr(2)
+    this.props.submit(this.inputName.value, this.inputPassword.value, token)
   }
 }
 

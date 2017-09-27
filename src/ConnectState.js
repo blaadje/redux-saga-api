@@ -6,7 +6,8 @@ import Login from './components/Login-form'
 function mapStateToProps (state) {
   return {
     name: state.submit.name,
-    password: state.submit.password
+    password: state.submit.password,
+    token: state.submit.token
   }
 }
 

@@ -1,4 +1,4 @@
-import { put, fork, call, takeEvery } from 'redux-saga/effects'
+import { put, fork, call, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
 function getDatas (name, password) {
@@ -24,23 +24,19 @@ function getDatas (name, password) {
   })
 }
 
-function* callGetDatas ({ name, password, resolve, reject }) {
+function* callGetDatas ({ name, password }) {
   const result = yield call(getDatas, name, password)
-  console.log(result)
   if (result.status === 200) {
     yield put({type: 'GETTING_DATAS', result})
-    yield call(resolve)
+    return result
   } else {
-    yield call(reject, {error: 'erreur'})
+    console.error('test')
+    return result
   }
-}
-
-function* watchDatasSaga () {
-  yield takeEvery('SUBMITING_DATAS', callGetDatas)
 }
 
 export default function* root() {
   yield [
-    fork(watchDatasSaga)
+    takeLatest('SUBMITING_DATAS', callGetDatas)
   ]
 }

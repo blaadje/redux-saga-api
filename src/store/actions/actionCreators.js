@@ -1,10 +1,11 @@
 // submit form
 
-export function submit (name, password) {
+export function submit (name, password, token) {
   return {
     type: 'SUBMITING_DATAS',
     name,
-    password
+    password,
+    token
   }
 }
 export function get (result) {
