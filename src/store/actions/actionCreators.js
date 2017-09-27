@@ -8,7 +8,7 @@ export function submit (name, password, token) {
     token
   }
 }
-export function get (result) {
+export function getting (result) {
   return {
     type: 'GETTING_DATAS',
     result

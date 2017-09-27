@@ -1,0 +1,13 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css';
+
+#root {
+  height: 100%;
+}
+
+#root > .grid {
+  height: 100%;
+}
+
+.column {
+  max-width: 450px;
+}
