@@ -27,9 +27,12 @@ function getDatas (name, password) {
 function* callGetDatas ({ name, password }) {
   const result = yield call(getDatas, name, password)
   if (result.status === 200) {
-    yield put({type: 'GETTING_DATAS', result})
+    alert('Connecté')
+    console.log(result)
+    yield put({type: 'GETTING_DATAS', status: 'success', result})
   } else {
-    return result
+    alert('Email ou mot de passe incorect')
+    console.error(result)
   }
 }
 

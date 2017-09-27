@@ -11,13 +11,13 @@ export default class Login extends Component {
               <div className="field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <input type="text" ref={ el => this.inputName = el } placeholder="name"/>
+                  <input type="text" ref={ el => this.inputName = el } placeholder="name" required/>
                 </div>
               </div>
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <input className="field" type="text" ref={ el => this.inputPassword = el } placeholder="password"/>
+                  <input className="field" type="password" ref={ el => this.inputPassword = el } placeholder="password" required/>
                 </div>
               </div>
               <button className="ui fluid large teal submit button">Envoyer</button>
@@ -28,7 +28,7 @@ export default class Login extends Component {
               <div>Name: {this.props.name}</div>
               <div>Password: {this.props.password}</div>
               <div>Token: {this.props.token}</div>
-              <div>Result: {this.props.result}</div>
+              <div>Result: {this.result}</div>
             </div>
           </div>
         </div>
