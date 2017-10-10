@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import * as actionCreators from './store/actions/actionCreators'
 import Login from './components/Login-form'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   name: state.submit.name,
   password: state.submit.password,
   token: state.submit.token,
-  result: state.result
+  result: state.datas.result
 })
 
 

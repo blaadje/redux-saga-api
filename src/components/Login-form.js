@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 
 export default class Login extends Component {
+  constructor (args){
+    super(args)
+    this.state = {
+      loading: false
+    }
+  }
+
+  componentWillReceiveProps ({ result }) {
+    if (result) {
+      this.setState({ 
+        loading: false,
+        result: result
+       })
+    }
+  }
+
   render() {
+    const { loading, result } = this.state
+
     return (
       <div className="ui middle aligned center aligned grid">
         <div className="column">
@@ -11,16 +29,21 @@ export default class Login extends Component {
               <div className="field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <input type="text" ref={ el => this.inputName = el } placeholder="name" required/>
+                  <input type="text" defaultValue="g7tdr@vmani.com" ref={ el => this.inputName = el } placeholder="name" required/>
                 </div>
               </div>
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <input className="field" type="password" ref={ el => this.inputPassword = el } placeholder="password" required/>
+                  <input className="field" defaultValue="Bonjour123"  type="password" ref={ el => this.inputPassword = el } placeholder="password" required/>
                 </div>
               </div>
-              <button className="ui fluid large teal submit button">Envoyer</button>
+              {!loading && 
+                <button className="ui fluid large teal submit button">Envoyer</button>
+              }
+              {loading &&
+                <div>Loading</div>
+              }
             </div>
           </form>
           <div className="ui message">
@@ -28,7 +51,9 @@ export default class Login extends Component {
               <div>Name: {this.props.name}</div>
               <div>Password: {this.props.password}</div>
               <div>Token: {this.props.token}</div>
-              <div>Result: {this.result}</div>
+              {(result) &&
+                <div>Result: {this.state.result.status}</div>
+              }
             </div>
           </div>
         </div>
@@ -37,6 +62,7 @@ export default class Login extends Component {
   }
   clickMe = function (e) {
     e.preventDefault()
+    this.setState({ loading: true })
     let token = Math.random().toString(36).substr(2)
     this.props.submit(this.inputName.value, this.inputPassword.value, token)
   }
